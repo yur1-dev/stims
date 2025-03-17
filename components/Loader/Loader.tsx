@@ -19,14 +19,6 @@ const Loader: React.FC = () => {
   return (
     <div className="relative p-6 rounded-full">
       {/* Blurred background */}
-      <div
-        className="absolute inset-0 rounded-full"
-        style={{
-          background: "radial-gradient(circle, #9B1D6E, #1E40AF)",
-          filter: "blur(20px)",
-          zIndex: 10, // Ensure it's behind the SVG
-        }}
-      ></div>
 
       {/* SVG logo */}
       <div className="relative z-50">
