@@ -1,16 +1,10 @@
 import type { Metadata } from "next";
-import { Blinker, Press_Start_2P } from "next/font/google";
+import { Blinker } from "next/font/google";
 import "./globals.css";
 
 const blinker = Blinker({
   weight: ["200", "300", "400", "600", "700"],
   subsets: ["latin"],
-});
-
-const pressStart2p = Press_Start_2P({
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
 });
 
 export const metadata: Metadata = {

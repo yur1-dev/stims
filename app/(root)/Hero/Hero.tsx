@@ -33,10 +33,6 @@ const Hero: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleHireMeClick = () => {
-    setIsModalOpen(true);
-  };
-
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
@@ -137,14 +133,17 @@ const Hero: React.FC = () => {
                 </div>
 
                 {/* Hire Me Button */}
-                {/* <div>
+                {/* 
+                Uncomment below if you want to use the Hire Me button.
+                <div>
                   <Button
-                    onClick={handleHireMeClick}
+                    onClick={() => setIsModalOpen(true)}
                     className="rounded bg-secondary border-[1px] text-white"
                   >
                     <span className="text-sm font-semibold">Hire me</span>
                   </Button>
-                </div> */}
+                </div>
+                */}
               </div>
 
               {/* RIGHT SIDE (IMAGE) */}
@@ -208,12 +207,12 @@ const Hero: React.FC = () => {
                   [text-shadow:2px_2px_0_#000,-2px_2px_0_#000,2px_-2px_0_#000,-2px_-2px_0_#000]
                 `}
               >
-                Looking to Hire? Let's Connect!
+                Looking to Hire? Let&apos;s Connect!
               </h2>
               <p className="text-gray-300 mb-4">
-                Welcome to Stims! I'm thrilled you're interested in working
-                together. Let's chat on Telegram to discuss how we can bring
-                your ideas to life.
+                Welcome to Stims! I&apos;m thrilled you&apos;re interested in
+                working together. Let&apos;s chat on Telegram to discuss how we
+                can bring your ideas to life.
               </p>
               <a
                 href="https://t.me/yuri_roc"
