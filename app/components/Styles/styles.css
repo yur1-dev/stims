@@ -1,0 +1,39 @@
+/* 
+.circle-gradient {
+  position: fixed; 
+  width: 40vw;
+  height: 40vw;
+  filter: blur(150px);
+  pointer-events: none; 
+  z-index: -1; 
+}
+
+.circle-1 {
+  top: 10%;
+  left: -10%;
+  background: radial-gradient(
+    circle,
+    rgba(6, 149, 162, 0.5) 0%,
+    rgba(62, 178, 255, 0.5) 100%
+  );
+}
+
+.circle-2 {
+  top: 50%;
+  right: -20%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 82, 198, 0.5) 0%,
+    rgba(254, 220, 178, 0.5) 100%
+  );
+}
+
+.circle-3 {
+  bottom: -10%;
+  left: 30%;
+  background: radial-gradient(
+    circle,
+    rgba(254, 220, 178, 0.5) 0%,
+    rgba(122, 101, 253, 0.5) -20%
+  );
+} */
