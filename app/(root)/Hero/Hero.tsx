@@ -22,10 +22,9 @@ const Hero: React.FC = () => {
   // Replace this with your actual contract address
   const contractAddress = "0x1234567890abcdef1234567890abcdef12345678";
   // Shortened display version (first 6 + last 4 characters)
-  const shortAddress = `${contractAddress.slice(
-    0,
-    6
-  )}...${contractAddress.slice(-4)}`;
+  const shortAddress = `${contractAddress.slice(0, 16)}${contractAddress.slice(
+    -4
+  )}...`;
 
   // Simulate a short load time before showing hero
   useEffect(() => {
