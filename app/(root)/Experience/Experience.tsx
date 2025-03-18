@@ -32,7 +32,7 @@ const AngelRules: React.FC = () => {
     },
   };
 
-  // Data for the angel steps (ensure these images are in your /public folder)
+  // Data for the angel steps
   const angelData = [
     {
       id: 1,
@@ -77,8 +77,11 @@ const AngelRules: React.FC = () => {
   ];
 
   return (
-    // Use a responsive container instead of fixed width
-    <div id="experience" className="w-[1200px] mx-auto px-4 overflow-x-hidden">
+    // Changed from fixed width to responsive container
+    <div
+      id="experience"
+      className="w-full max-w-[1200px] mx-auto px-4 overflow-x-hidden"
+    >
       <motion.div
         initial="hidden"
         animate={isVisible ? "visible" : "hidden"}
@@ -96,8 +99,7 @@ const AngelRules: React.FC = () => {
             - On small screens and up, uses a 3-column grid */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 p-4">
           {angelData.map((item, index) => {
-            // On mobile, each item takes full width (col-span-1).
-            // On larger screens, use your layout config.
+            // Use layout config for larger screens
             const { colSpan, rowSpan } = layout[index] || {
               colSpan: 1,
               rowSpan: 1,
@@ -114,7 +116,7 @@ const AngelRules: React.FC = () => {
                 <div className="border-2 border-[#5C1618] rounded-xl glow-border overflow-hidden w-full h-full">
                   <div className="w-full relative h-64">
                     <Image
-                      src={item.images[0]} // Displays the first image in the array
+                      src={item.images[0]}
                       alt={item.step}
                       fill
                       className="object-cover"
