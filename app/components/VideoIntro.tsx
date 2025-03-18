@@ -5,13 +5,9 @@ const VideoIntro: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Handle skipping the video
   const handleSkip = () => setShowVideo(false);
-
-  // Handle video ending naturally
   const handleVideoEnd = () => setShowVideo(false);
 
-  // Handle unmuting the video
   const handleUnmute = () => {
     if (videoRef.current) {
       videoRef.current.muted = false;
@@ -20,13 +16,10 @@ const VideoIntro: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   };
 
   return (
-    // Ensuring the parent covers the full viewport height
     <div className="relative min-h-screen">
       {children}
       {showVideo && (
-        // Using fixed positioning to keep the video overlay centered in the viewport
         <div className="fixed inset-0 flex items-center justify-center z-10">
-          {/* Glass background container with rounded corners */}
           <div className="relative w-[80vw] max-w-[800px] rounded-xl overflow-hidden bg-white/20 backdrop-blur-lg border border-white/30">
             <div className="relative aspect-video">
               <video
@@ -35,7 +28,12 @@ const VideoIntro: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 muted
                 playsInline
                 onEnded={handleVideoEnd}
-                className="w-full h-full object-cover"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "50% 49%",
+                }}
               >
                 <source src="/video/intro.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
