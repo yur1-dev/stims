@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Socials from "@/app/components/Socials/Socials";
 import { motion, AnimatePresence } from "framer-motion";

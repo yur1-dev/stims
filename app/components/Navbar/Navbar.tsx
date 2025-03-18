@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
       <div className="max-w-[1200px] mx-auto py-4 flex justify-between items-center relative">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <a href="/">
+          <Link href="/">
             <Image
               src="/logo-img.png"
               alt="Nav Logo"
@@ -53,7 +53,7 @@ const Navbar: React.FC = () => {
               height={60}
               className="rounded-full"
             />
-          </a>
+          </Link>
         </div>
 
         {/* Desktop Menu */}
