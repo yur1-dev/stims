@@ -41,7 +41,7 @@ const Joinus = () => {
           today as a man, a husband, a father, and as your president, but most
           importantly as a citizen of this country. I will not sugarcoat our
           current situation. We are on the cusp of war, and our enemy is not
-          from this Earth. This is not a test, nor is it a joke—it is the grim
+          from this Earth. This is not a test, nor is it a joke it is the grim
           reality we face. Our very species is in danger, and our cities may
           fall. Even as I speak, our adversaries are preparing their nuclear
           arsenal. The sky itself may seem to collapse around us.
