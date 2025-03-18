@@ -4,23 +4,23 @@ import Image from "next/image";
 export default function Social() {
   const icons = [
     {
-      href: "https://dexscreener.com/",
+      href: "https://t.me/angels_portal",
       src: "/telegram.png",
-      alt: "Dexscreener Logo",
+      alt: "Telegram Logo",
       width: 48,
       height: 48,
     },
     {
       href: "https://x.com/angelengine_xyz",
       src: "/x.png",
-      alt: "Telegram Logo",
+      alt: "X Logo",
       width: 48,
       height: 48,
     },
     {
-      href: "https://telegram.org/",
+      href: "https://dexscreener.com/",
       src: "/dexscreener.png",
-      alt: "Telegram Logo",
+      alt: "Dexscreener Logo",
       width: 48,
       height: 48,
     },
