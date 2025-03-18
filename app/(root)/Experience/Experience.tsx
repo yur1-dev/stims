@@ -3,15 +3,16 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Press_Start_2P } from "next/font/google";
+import { Inknut_Antiqua } from "next/font/google";
 
-const pressStart = Press_Start_2P({
+// Load the Inknut Antiqua font
+const inknutAntiqua = Inknut_Antiqua({
   subsets: ["latin"],
   weight: "400",
   display: "swap",
 });
 
-const Experience: React.FC = () => {
+const AngelRules: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -21,73 +22,114 @@ const Experience: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Animation variant similar to Hero.tsx
+  // Fade-up animation variant
   const fadeUp = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8 },
+    },
   };
 
-  // We’re using four items (omitting “Get the life” for exactly 4 divs)
-  const monkeyData = [
-    { id: 1, phrase: "Get the business", image: "/monkey1.png" },
-    { id: 2, phrase: "Get the money", image: "/monkey2.png" },
-    { id: 3, phrase: "Get the shape", image: "/monkey3.png" },
-    { id: 4, phrase: "Get the girl", image: "/monkey4.png" },
+  // Data for the angel steps (ensure these images are in your /public folder)
+  const angelData = [
+    {
+      id: 1,
+      step: "Exploit Your Planet",
+      images: ["/angel-5.jpg", "/angel-5b.jpg"],
+    },
+    {
+      id: 2,
+      step: "Exterminate The Wild Life",
+      images: ["/angel-6.png", "/angel-6b.png"],
+    },
+    {
+      id: 3,
+      step: "Species Will Disarray",
+      images: ["/angel-7.png", "/angel-7b.png"],
+    },
+    {
+      id: 4,
+      step: "Divine Messenger Will Descend",
+      images: ["/angel-8.png", "/angel-8b.png"],
+    },
+    {
+      id: 5,
+      step: "The Angel Engine",
+      images: ["/angel-9.png", "/angel-9b.png"],
+    },
+    {
+      id: 6,
+      step: "Original Form",
+      images: ["/angel-10.png", "/angel-10.png"],
+    },
+  ];
+
+  // Layout configuration for the grid on larger screens
+  const layout = [
+    { colSpan: 2, rowSpan: 1 },
+    { colSpan: 1, rowSpan: 2 },
+    { colSpan: 1, rowSpan: 1 },
+    { colSpan: 2, rowSpan: 1 },
+    { colSpan: 1, rowSpan: 1 },
+    { colSpan: 3, rowSpan: 1 },
   ];
 
   return (
-    <div className="w-full px-4 py-8 bg-black">
+    // Use a responsive container instead of fixed width
+    <div id="experience" className="w-[1200px] mx-auto px-4 overflow-x-hidden">
       <motion.div
         initial="hidden"
         animate={isVisible ? "visible" : "hidden"}
         variants={fadeUp}
-        className="max-w-[900px] mx-auto"
+        className="w-full"
       >
         <h1
-          className={`${pressStart.className} text-4xl text-center text-white mb-8`}
+          className={`${inknutAntiqua.className} text-3xl sm:text-4xl text-center text-white py-8`}
         >
-          STIMS
+          HOW TO CATCH AN ANGEL
         </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {monkeyData.map((item, index) => (
-            <motion.div
-              key={item.id}
-              variants={fadeUp}
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
-              transition={{ delay: index * 0.2 }}
-              className="flex flex-col items-center justify-center p-6 border-2 border-white rounded-xl glow-border"
-            >
-              <div className="w-24 h-24 mb-4">
-                <Image
-                  src={item.image}
-                  alt={item.phrase}
-                  width={96}
-                  height={96}
-                  className="object-contain"
-                />
-              </div>
-              <p
-                className={`${pressStart.className} text-lg text-white text-center`}
+
+        {/* Responsive Grid Layout:
+            - Defaults to a single column on mobile
+            - On small screens and up, uses a 3-column grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 p-4">
+          {angelData.map((item, index) => {
+            // On mobile, each item takes full width (col-span-1).
+            // On larger screens, use your layout config.
+            const { colSpan, rowSpan } = layout[index] || {
+              colSpan: 1,
+              rowSpan: 1,
+            };
+            return (
+              <motion.div
+                key={item.id}
+                variants={fadeUp}
+                initial="hidden"
+                animate={isVisible ? "visible" : "hidden"}
+                transition={{ delay: index * 0.2 }}
+                className={`col-span-1 sm:col-span-${colSpan} sm:row-span-${rowSpan} flex flex-col`}
               >
-                {item.phrase}
-              </p>
-            </motion.div>
-          ))}
+                <div className="border-2 border-[#5C1618] rounded-xl glow-border overflow-hidden w-full h-full">
+                  <div className="w-full relative h-64">
+                    <Image
+                      src={item.images[0]} // Displays the first image in the array
+                      alt={item.step}
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                </div>
+                <p className="mt-2 text-white text-center">{item.step}</p>
+              </motion.div>
+            );
+          })}
         </div>
       </motion.div>
-      {/* Glowing border styles */}
-      <style jsx>{`
-        .glow-border {
-          box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.7);
-          transition: box-shadow 0.3s ease;
-        }
-        .glow-border:hover {
-          box-shadow: 0 0 20px 4px rgba(255, 255, 255, 1);
-        }
-      `}</style>
     </div>
   );
 };
 
-export default Experience;
+export default AngelRules;

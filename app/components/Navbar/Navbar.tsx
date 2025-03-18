@@ -3,11 +3,12 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"; // Adjust import to your setup
 import { motion } from "framer-motion";
-import { Press_Start_2P } from "next/font/google";
+import { Inknut_Antiqua } from "next/font/google";
 
-const pressStart = Press_Start_2P({
+// Use any font you like (here reusing Inknut Antiqua for demo)
+const pressStart = Inknut_Antiqua({
   subsets: ["latin"],
   weight: "400",
   display: "swap",
@@ -16,6 +17,7 @@ const pressStart = Press_Start_2P({
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // Prevent scrolling when mobile menu is open
   useEffect(() => {
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = isMobileMenuOpen ? "hidden" : prevOverflow;
@@ -24,6 +26,7 @@ const Navbar: React.FC = () => {
     };
   }, [isMobileMenuOpen]);
 
+  // Smooth-scroll to the section with id "experience"
   const handleExperienceClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (window.location.pathname === "/") {
       e.preventDefault();
@@ -32,57 +35,52 @@ const Navbar: React.FC = () => {
         ?.scrollIntoView({ behavior: "smooth" });
       setIsMobileMenuOpen(false);
     } else {
+      // If not on the homepage, you might redirect to the homepage with a hash
       setIsMobileMenuOpen(false);
     }
   };
 
   return (
     <nav className="w-full px-4">
-      <div className="max-w-[900px] mx-auto py-4 flex justify-between items-center relative">
-        {/* Logo and Name */}
+      <div className="max-w-[1200px] mx-auto py-4 flex justify-between items-center relative">
+        {/* Logo */}
         <div className="flex items-center gap-2">
-          <Image
-            src="/nav-logo.png"
-            alt="Nav Logo"
-            width={60}
-            height={60}
-            className="rounded-full"
-          />
-          <h1
-            className={`${pressStart.className} text-3xl md:text-3xl font-bold text-white`}
-            style={{
-              textShadow:
-                "2px 2px 0px black, -2px -2px 0px black, -2px 2px 0px black, 2px -2px 0px black",
-            }}
-          >
-            <Link href="/">STIMS</Link>
-          </h1>
+          <a href="/">
+            <Image
+              src="/logo-img.png"
+              alt="Nav Logo"
+              width={60}
+              height={60}
+              className="rounded-full"
+            />
+          </a>
         </div>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex items-center gap-8 text-white text-xs">
           <NavItem href="/" onClick={() => setIsMobileMenuOpen(false)}>
-            Intro
+            INTRO
           </NavItem>
+          {/* Use smooth scrolling link to the section */}
           <NavItem href="/#experience" onClick={handleExperienceClick}>
-            Stims
+            HOW TO?
           </NavItem>
-          {/* <NavItem href="/projects" onClick={() => setIsMobileMenuOpen(false)}>
-            Projects
+          <NavItem
+            href="/#the-president"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            THE PRESIDENT
           </NavItem>
-          <NavItem href="/3dstation" onClick={() => setIsMobileMenuOpen(false)}>
-            3D Station
-          </NavItem> */}
-        </ul>
 
-        {/* STORY MODE Button for Desktop */}
-        <div className="hidden md:block">
-          <Button className="rounded" variant="secondary">
-            <Link className="text-sm font-semibold" href="/projects">
-              STORY MODE
-            </Link>
-          </Button>
-        </div>
+          {/* Example button on desktop */}
+          <div className="hidden md:block">
+            <Button className="rounded" variant="secondary">
+              <Link className="text-sm font-semibold" href="/projects">
+                ENTER WORLD
+              </Link>
+            </Button>
+          </div>
+        </ul>
 
         {/* Mobile Menu Toggle */}
         <button
@@ -151,21 +149,15 @@ const Navbar: React.FC = () => {
             Intro
           </NavItem>
           <NavItem href="/#experience" onClick={handleExperienceClick}>
-            Experience
+            How To?
           </NavItem>
-          {/* <NavItem href="/projects" onClick={() => setIsMobileMenuOpen(false)}>
-            Projects
-          </NavItem>
-          <NavItem href="/3dstation" onClick={() => setIsMobileMenuOpen(false)}>
-            3D Station
-          </NavItem> */}
         </motion.ul>
 
-        {/* STORY MODE Button for Mobile */}
+        {/* Example button for Mobile */}
         <div className="mt-8">
           <Button className="rounded" variant="secondary">
             <Link className="text-sm font-semibold" href="/projects">
-              STORY MODE
+              ENTER WORLD
             </Link>
           </Button>
         </div>
@@ -174,6 +166,7 @@ const Navbar: React.FC = () => {
   );
 };
 
+// Reusable NavItem component
 interface NavItemProps {
   href: string;
   children: React.ReactNode;

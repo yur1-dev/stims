@@ -9,13 +9,22 @@ const Page = () => {
   const [imageLoaded, setImageLoaded] = useState([false, false, false, false]);
 
   const projectData = [
-    { name: "Get The Stims", link: "/" },
     {
-      name: "Get The Money",
-      link: "/",
+      name: "The Divine",
+      link: "https://www.tiktok.com/@angelengine.archives/video/7464200859233094934?lang=en",
     },
-    { name: "Get The Life", link: "/" },
-    { name: "Get The Business", link: "/" },
+    {
+      name: "The President",
+      link: "https://www.tiktok.com/@angelengine.archives/video/7464679584710003990?lang=en",
+    },
+    {
+      name: "The Hero",
+      link: "https://www.tiktok.com/@angelengine.archives/video/7465687977222507798?lang=en",
+    },
+    {
+      name: "The Engine",
+      link: "https://www.tiktok.com/@angelengine.archives/video/7471461923813379350?lang=en",
+    },
   ];
 
   useEffect(() => {
@@ -63,7 +72,7 @@ const Page = () => {
                 }}
               >
                 <Image
-                  src={`/monkey-${index + 1}.png`}
+                  src={`/angel-${index + 1}.jpg`}
                   alt={`Monkey project ${project.name}`}
                   fill
                   onLoadingComplete={() => handleImageLoad(index)}

@@ -8,7 +8,9 @@ const Footer = () => {
       {/* Footer Content */}
       <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
         {/* Logo */}
-        <h1 className="text-4xl font-bold tracking-wide">STIMS</h1>
+        <h1 className="text-4xl font-bold tracking-wide">
+          ANGEL <span className="text-[#591419]"> ENGINE</span>
+        </h1>
 
         {/* Navigation */}
         {/* <nav className="flex flex-wrap justify-center gap-6 text-lg">
@@ -57,10 +59,10 @@ const Footer = () => {
 
       {/* Bottom Section */}
       <div className="mt-6 text-center text-sm opacity-50">
-        © {new Date().getFullYear()} STIMS. All Rights Reserved.
+        © {new Date().getFullYear()} ANGEL ENGINE. All Rights Reserved.
       </div>
     </footer>
   );
 };
-
+<h1 className="text-4xl md:text-6xl text-[#591419]">ENGINE</h1>;
 export default Footer;

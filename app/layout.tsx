@@ -1,56 +1,52 @@
 import type { Metadata } from "next";
-import { Blinker } from "next/font/google";
+import { Inknut_Antiqua } from "next/font/google";
 import "./globals.css";
 
-const blinker = Blinker({
-  weight: ["200", "300", "400", "600", "700"],
+// Load the Inknut Antiqua font
+const inknutAntiqua = Inknut_Antiqua({
   subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Stims | Hyperactive Energy Hub",
+  title:
+    "Angel Engine | Angel Engine is a forward-thinking platform that unites creative minds, innovators, and tech enthusiasts.",
   description:
-    "Welcome to the Stims experience. Discover a high-energy digital realm where cutting-edge design meets boundless creativity. Unleash your productivity with a futuristic twist.",
+    "Angel Engine is a forward-thinking platform that unites creative minds, innovators, and tech enthusiasts. It offers a space to share ideas, explore groundbreaking projects, and collaborate on shaping a dynamic digital future. Whether you're looking for inspiration, resources, or a community of like-minded individuals, the initiative is dedicated to empowering creative expression and practical innovation.",
   openGraph: {
-    title: "Stims | Hyperactive Energy Hub",
+    title: "Angel Engine",
     description:
-      "Welcome to the Stims experience. Discover a high-energy digital realm where cutting-edge design meets boundless creativity. Unleash your productivity with a futuristic twist.",
-    url: "https://stims.vercel.app",
-    siteName: "Stims",
-    images: [
-      {
-        url: "https://stims.vercel.app/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Stims Open Graph Image",
-      },
-    ],
-    locale: "en_US",
+      "Angel Engine is a forward-thinking platform that unites creative minds, innovators, and tech enthusiasts. It offers a space to share ideas, explore groundbreaking projects, and collaborate on shaping a dynamic digital future. Whether you're looking for inspiration, resources, or a community of like-minded individuals, the initiative is dedicated to empowering creative expression and practical innovation.",
+    images: ["/images/hero-cover.png"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Stims | Hyperactive Energy Hub",
+    title: "Angel Engine",
     description:
-      "Welcome to the Stims experience. Discover a high-energy digital realm where cutting-edge design meets boundless creativity. Unleash your productivity with a futuristic twist.",
-    creator: "@stims",
-    images: ["https://stims.vercel.app/og-image.png"],
+      "Angel Engine is a forward-thinking platform that unites creative minds, innovators, and tech enthusiasts. It offers a space to share ideas, explore groundbreaking projects, and collaborate on shaping a dynamic digital future. Whether you're looking for inspiration, resources, or a community of like-minded individuals, the initiative is dedicated to empowering creative expression and practical innovation.",
+    images: ["/images/hero-cover.png"],
   },
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en" className="scroll-smooth overflow-x-hidden loading">
-      {/* 
-          The Blinker font is applied globally on the body.
-          Use pressStart2p.className on any element where you want to use the "Press Start 2P" font.
-      */}
-      <body className={`${blinker.className} antialiased loading`}>
-        {children}
+    <html lang="en">
+      <body
+        className={`
+          ${inknutAntiqua.className} 
+          antialiased 
+          min-h-screen 
+          bg-gradient-to-b from-black via-[#1A1A2E] to-black 
+          text-white 
+          flex flex-col
+        `}
+      >
+        <main className="flex-1">{children}</main>
       </body>
     </html>
   );

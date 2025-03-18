@@ -23,7 +23,7 @@ const Loader: React.FC = () => {
       {/* SVG logo */}
       <div className="relative z-50">
         <Image
-          src="/logo.png"
+          src="/loader.png"
           alt="Loading Logo"
           width={80}
           height={80}

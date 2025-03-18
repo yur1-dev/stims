@@ -1,3 +1,4 @@
+// page.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -7,6 +8,8 @@ import Experience from "./(root)/Experience/Experience";
 import Footer from "./components/Footer/Footer";
 import Cgradients from "./components/Cgradients/Cgradients";
 import Loader from "@/components/Loader/Loader";
+import VideoIntro from "./components/VideoIntro";
+import Joinus from "./(root)/3dstation/Joinus";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -43,11 +46,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main
-      className={`relative w-full min-h-screen ${
-        isLoading ? "overflow-hidden" : ""
-      }`}
-    >
+    <main className="relative w-full min-h-screen">
       {/* Loader Overlay */}
       {isLoading && (
         <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center">
@@ -55,7 +54,7 @@ export default function Home() {
         </div>
       )}
 
-      {/* Content (hidden while loading) */}
+      {/* Content with VideoIntro */}
       <div
         className={`w-full transition-all duration-500 ${
           isLoading
@@ -63,26 +62,18 @@ export default function Home() {
             : "opacity-100 pointer-events-auto"
         }`}
       >
-        {/* VIDEO BACKGROUND WRAPPER */}
-        <div className="relative w-full min-h-[100vh]">
-          <video
-            autoPlay
-            loop
-            muted
-            className="absolute inset-0 w-full h-full object-cover z-[-1]"
-          >
-            <source src="/video/bg.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-
-          {/* Everything here is above the video */}
+        {/* Background Image Wrapper */}
+        <div className="relative w-full min-h-[100vh] bg-[url('/bg-img.png')] bg-cover bg-center">
           <Navbar />
-          <Hero />
+          <VideoIntro>
+            <Hero />
+          </VideoIntro>
         </div>
 
-        {/* The rest of your content below */}
+        {/* Rest of the content */}
         <Cgradients />
         <Experience />
+        <Joinus />
         <Footer />
       </div>
     </main>
