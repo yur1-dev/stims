@@ -31,7 +31,7 @@ const Footer = () => {
         {/* Social Links */}
         <div className="flex gap-6">
           <a
-            href="https://t.me/stimscoin"
+            href="https://t.me/angels_portal"
             target="_blank"
             rel="noreferrer"
             className="opacity-60 hover:opacity-100 transition"
@@ -47,12 +47,12 @@ const Footer = () => {
             Dexscreener
           </a>
           <a
-            href="https://twitter.com/stimscrypto"
+            href="https://x.com/angelengine_xyz"
             target="_blank"
             rel="noreferrer"
             className="opacity-60 hover:opacity-100 transition"
           >
-            Twitter
+            X
           </a>
         </div>
       </div>
