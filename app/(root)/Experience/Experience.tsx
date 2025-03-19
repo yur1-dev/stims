@@ -36,32 +36,32 @@ const AngelRules: React.FC = () => {
   const angelData = [
     {
       id: 1,
-      step: "Exploit Your Planet",
+      step: "Mint The Planet",
       images: ["/angel-5.jpg", "/angel-5b.jpg"],
     },
     {
       id: 2,
-      step: "Exterminate The Wild Life",
+      step: "Exterminate The Jeets",
       images: ["/angel-6.png", "/angel-6b.png"],
     },
     {
       id: 3,
-      step: "Species Will Disarray",
+      step: "All Species in a Hard Fork",
       images: ["/angel-7.png", "/angel-7b.png"],
     },
     {
       id: 4,
-      step: "Divine Messenger Will Descend",
+      step: "A Divine Airdrop",
       images: ["/angel-8.png", "/angel-8b.png"],
     },
     {
       id: 5,
-      step: "The Angel Engine",
+      step: "Engine Validator",
       images: ["/angel-9.png", "/angel-9b.png"],
     },
     {
       id: 6,
-      step: "Original Form",
+      step: "Genesis Form",
       images: ["/angel-10.png", "/angel-10.png"],
     },
   ];
