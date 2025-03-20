@@ -25,7 +25,7 @@ export default function Social() {
       height: 48,
     },
     {
-      href: "https://pump.fun/",
+      href: "https://pump.fun/coin/H3FNcSBw78F9yNPoPNT5gueaCikGS25MYMDju4Aypump",
       src: "/pumpfun.png",
       alt: "Twitter Logo",
       width: 48,

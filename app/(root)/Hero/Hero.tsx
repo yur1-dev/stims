@@ -20,7 +20,7 @@ const Hero: React.FC = () => {
   const [isCopied, setIsCopied] = useState(false);
 
   // Replace this with your actual contract address
-  const contractAddress = "TO BE ANNOUNCED!";
+  const contractAddress = "H3FNcSBw78F9yNPoPNT5gueaCikGS25MYMDju4Aypump";
   // Shortened display version (first 6 + last 4 characters)
   const shortAddress = `${contractAddress.slice(0, 18)}${contractAddress.slice(
     -4
