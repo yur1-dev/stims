@@ -20,7 +20,7 @@ const Hero: React.FC = () => {
   const [isCopied, setIsCopied] = useState(false);
 
   // Replace this with your actual contract address
-  const contractAddress = "H3FNcSBw78F9yNPoPNT5gueaCikGS25MYMDju4Aypump";
+  const contractAddress = "";
   // Shortened display version (first 6 + last 4 characters)
   const shortAddress = `${contractAddress.slice(0, 18)}${contractAddress.slice(
     -4
@@ -95,20 +95,10 @@ const Hero: React.FC = () => {
               {/* Buttons */}
               <div className="flex items-center gap-4">
                 {/* Red button for "BE A HERO" */}
-                <Button onClick={handleRedirect} className="w-full md:w-auto">
-                  <a
-                    href="https://angelengineinitiative.org/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    BE A HERO
-                  </a>
-                </Button>
 
                 {/* Different color button for "CONTRACT" with a custom border */}
                 <Button
                   onClick={openModal}
-                  variant="secondary"
                   className="w-full md:w-auto border border-[#591419]"
                 >
                   CONTRACT

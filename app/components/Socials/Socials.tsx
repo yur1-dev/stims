@@ -25,7 +25,7 @@ export default function Social() {
     //   height: 48,
     // },
     {
-      href: "https://pump.fun/coin/H3FNcSBw78F9yNPoPNT5gueaCikGS25MYMDju4Aypump",
+      href: "https://pump.fun/",
       src: "/pumpfun.png",
       alt: "Pill Logo",
       width: 48,

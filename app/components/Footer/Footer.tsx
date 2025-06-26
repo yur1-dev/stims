@@ -31,23 +31,7 @@ const Footer = () => {
         {/* Social Links */}
         <div className="flex gap-6">
           <a
-            href="https://t.me/angels_portal"
-            target="_blank"
-            rel="noreferrer"
-            className="opacity-60 hover:opacity-100 transition"
-          >
-            Telegram
-          </a>
-          <a
-            href="https://github.com/stims-dev"
-            target="_blank"
-            rel="noreferrer"
-            className="opacity-60 hover:opacity-100 transition"
-          >
-            Dexscreener
-          </a>
-          <a
-            href="https://x.com/angelengine_xyz"
+            href="https://x.com/i/communities/1938274650569503000/"
             target="_blank"
             rel="noreferrer"
             className="opacity-60 hover:opacity-100 transition"
