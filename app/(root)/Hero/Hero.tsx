@@ -36,10 +36,6 @@ const Hero: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleRedirect = () => {
-    window.open("https://angelengineinitiative.org/", "_blank");
-  };
-
   const openModal = () => {
     setIsModalOpen(true);
   };
