@@ -21,12 +21,13 @@ const Hero: React.FC = () => {
 
   // Replace this with your actual contract address
   const contractAddress = "";
-  // Shortened display version (first 6 + last 4 characters)
-  const shortAddress = `${contractAddress.slice(0, 18)}${contractAddress.slice(
-    -4
-  )}...`;
 
-  // Simulate a short load time before showing hero
+  // Shortened display version (first 6 + last 4 characters)
+  const shortAddress =
+    contractAddress.length > 0
+      ? `${contractAddress.slice(0, 6)}...${contractAddress.slice(-4)}`
+      : "";
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -35,29 +36,23 @@ const Hero: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Redirect to another website when button is clicked
   const handleRedirect = () => {
     window.open("https://angelengineinitiative.org/", "_blank");
   };
 
-  // Open the contract modal
   const openModal = () => {
     setIsModalOpen(true);
   };
 
-  // Close the contract modal
   const closeModal = () => {
     setIsModalOpen(false);
-    setIsCopied(false); // reset copy message state when closing
+    setIsCopied(false);
   };
 
-  // Copy the contract address to clipboard, then show "Copied!" message
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(contractAddress);
       setIsCopied(true);
-
-      // Hide the "Copied!" message after 2 seconds
       setTimeout(() => setIsCopied(false), 2000);
     } catch (err) {
       console.error("Failed to copy contract address:", err);
@@ -65,7 +60,11 @@ const Hero: React.FC = () => {
   };
 
   if (loading) {
-    return null;
+    return (
+      <div className="w-full h-screen flex items-center justify-center text-white">
+        Loading...
+      </div>
+    );
   }
 
   return (
@@ -79,24 +78,17 @@ const Hero: React.FC = () => {
             exit={{ opacity: 0 }}
             className={`relative w-full h-[80vh] flex flex-col items-center justify-center text-center text-white overflow-hidden ${inknutAntiqua.className}`}
           >
-            {/* Main content container */}
             <div className="relative z-10 flex flex-col items-center justify-center p-4 space-y-6">
-              {/* Title texts: Stack vertically on mobile, side-by-side on md and up */}
               <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-4">
                 <h1 className="text-4xl md:text-6xl md:mr-96">ANGEL</h1>
                 <h1 className="text-4xl md:text-6xl text-[#591419]">ENGINE</h1>
               </div>
 
-              {/* Social Icons */}
               <div className="mt-6">
                 <Socials />
               </div>
 
-              {/* Buttons */}
               <div className="flex items-center gap-4">
-                {/* Red button for "BE A HERO" */}
-
-                {/* Different color button for "CONTRACT" with a custom border */}
                 <Button
                   onClick={openModal}
                   className="w-full md:w-auto border border-[#591419]"
@@ -135,10 +127,11 @@ const Hero: React.FC = () => {
 
               <p className="mb-2">Contract Address:</p>
               <div className="flex items-center gap-2 mb-4">
-                {/* Display only shortened address here */}
-                <p className="break-all">{shortAddress}</p>
+                <p title={contractAddress} className="break-all">
+                  {shortAddress}
+                </p>
                 <Button
-                  className="text-black"
+                  className="text-black border border-white hover:bg-white transition"
                   variant="outline"
                   onClick={handleCopy}
                 >
@@ -146,7 +139,6 @@ const Hero: React.FC = () => {
                 </Button>
               </div>
 
-              {/* "Copied!" message */}
               {isCopied && (
                 <p className="text-green-400 text-sm mb-4">Copied!</p>
               )}
