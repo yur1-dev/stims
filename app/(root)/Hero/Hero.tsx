@@ -45,6 +45,7 @@ const Hero: React.FC = () => {
     setIsCopied(false);
   };
 
+  // Line 39 should be around here - check for handleRedirect function
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(contractAddress);
