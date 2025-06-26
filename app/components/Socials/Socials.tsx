@@ -27,14 +27,14 @@ export default function Social() {
     {
       href: "https://pump.fun/coin/H3FNcSBw78F9yNPoPNT5gueaCikGS25MYMDju4Aypump",
       src: "/pumpfun.png",
-      alt: "Twitter Logo",
+      alt: "Pill Logo",
       width: 48,
       height: 48,
     },
     {
-      href: "https://www.tiktok.com/@angelengine.archives?lang=en",
+      href: "https://www.tiktok.com/@theunearthlyhub?lang=en",
       src: "/tiktok.png",
-      alt: "Pill Logo",
+      alt: "Tiktok Logo",
       width: 48,
       height: 48,
     },
