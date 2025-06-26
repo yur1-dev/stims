@@ -3,27 +3,27 @@ import Image from "next/image";
 
 export default function Social() {
   const icons = [
+    // {
+    //   href: "https://t.me/angels_portal",
+    //   src: "/telegram.png",
+    //   alt: "Telegram Logo",
+    //   width: 48,
+    //   height: 48,
+    // },
     {
-      href: "https://t.me/angels_portal",
-      src: "/telegram.png",
-      alt: "Telegram Logo",
-      width: 48,
-      height: 48,
-    },
-    {
-      href: "https://x.com/angelengine_xyz",
+      href: "https://x.com/i/communities/1938274650569503000/",
       src: "/x.png",
       alt: "X Logo",
       width: 48,
       height: 48,
     },
-    {
-      href: "https://dexscreener.com/",
-      src: "/dexscreener.png",
-      alt: "Dexscreener Logo",
-      width: 48,
-      height: 48,
-    },
+    // {
+    //   href: "https://dexscreener.com/",
+    //   src: "/dexscreener.png",
+    //   alt: "Dexscreener Logo",
+    //   width: 48,
+    //   height: 48,
+    // },
     {
       href: "https://pump.fun/coin/H3FNcSBw78F9yNPoPNT5gueaCikGS25MYMDju4Aypump",
       src: "/pumpfun.png",
