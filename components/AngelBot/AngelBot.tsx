@@ -12,7 +12,6 @@ import {
   Video,
   MessageCircle,
   Settings,
-  Wallet,
   Send,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -327,11 +326,6 @@ const AngelBot = () => {
     if (containerRef.current)
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
   }, [messages, loading]);
-
-  // Toggle wallet connection
-  const toggleWallet = () => {
-    setConnectedWallet(!connectedWallet);
-  };
 
   // End chat function
   const endChat = () => {
