@@ -5,8 +5,9 @@ import { Button } from "@/components/ui/button";
 import Socials from "@/app/components/Socials/Socials";
 import { motion, AnimatePresence } from "framer-motion";
 import { Inknut_Antiqua } from "next/font/google";
+import AngelBot from "@/components/AngelBot/AngelBot";
+import { useRouter } from "next/navigation"; // ✅ Import router
 
-// Load the Inknut Antiqua font
 const inknutAntiqua = Inknut_Antiqua({
   subsets: ["latin"],
   weight: "400",
@@ -18,11 +19,10 @@ const Hero: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
+  const router = useRouter(); // ✅ Initialize router
 
-  // Replace this with your actual contract address
   const contractAddress = "";
 
-  // Shortened display version (first 6 + last 4 characters)
   const shortAddress =
     contractAddress.length > 0
       ? `${contractAddress.slice(0, 6)}...${contractAddress.slice(-4)}`
@@ -45,7 +45,6 @@ const Hero: React.FC = () => {
     setIsCopied(false);
   };
 
-  // Line 39 should be around here - check for handleRedirect function
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(contractAddress);
@@ -92,6 +91,13 @@ const Hero: React.FC = () => {
                 >
                   CONTRACT
                 </Button>
+
+                <Button
+                  onClick={() => router.push("/app")}
+                  className="w-full md:w-auto bg-[#ffffff] text-black font-bold hover:bg-[#c0c0c0]"
+                >
+                  ENTER APP
+                </Button>
               </div>
             </div>
           </motion.section>
@@ -107,12 +113,10 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            {/* Backdrop */}
             <div
               className="absolute inset-0 bg-black/70"
               onClick={closeModal}
             />
-            {/* Modal content */}
             <motion.div
               className="relative bg-gray-900 text-white rounded-2xl p-6 max-w-lg mx-auto z-50 shadow-xl"
               initial={{ scale: 0.8, opacity: 0 }}
@@ -145,6 +149,8 @@ const Hero: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <AngelBot />
     </>
   );
 };
