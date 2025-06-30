@@ -98,7 +98,6 @@ const AngelBot = () => {
   const [videoError, setVideoError] = useState(false);
   const animationRef = useRef<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [connectedWallet, setConnectedWallet] = useState(false);
   const [chatEnded, setChatEnded] = useState(false);
 
   // Play/pause video based on typing state
