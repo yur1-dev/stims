@@ -1,12 +1,24 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 const VideoIntro: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [showVideo, setShowVideo] = useState(true);
+  // Initialize state based on localStorage (only show video if not seen before)
+  const [showVideo, setShowVideo] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false; // SSR safety, assume seen
+    return !localStorage.getItem("introSeen");
+  });
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const handleSkip = () => setShowVideo(false);
-  const handleVideoEnd = () => setShowVideo(false);
+  // When video is skipped or ends, mark as seen
+  const markSeen = () => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("introSeen", "true");
+    }
+    setShowVideo(false);
+  };
+
+  const handleSkip = () => markSeen();
+  const handleVideoEnd = () => markSeen();
 
   const handleUnmute = () => {
     if (videoRef.current) {
@@ -14,6 +26,17 @@ const VideoIntro: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       setIsMuted(false);
     }
   };
+
+  // If localStorage changes externally, ensure the intro respects it
+  useEffect(() => {
+    const onStorage = (event: StorageEvent) => {
+      if (event.key === "introSeen" && event.newValue === "true") {
+        setShowVideo(false);
+      }
+    };
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, []);
 
   return (
     <div className="relative min-h-screen">
