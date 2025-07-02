@@ -76,7 +76,7 @@ const Navbar: React.FC = () => {
           <div className="hidden md:block">
             <Button className="rounded" variant="secondary">
               <Link className="text-sm font-semibold" href="/projects">
-                ENTER WORLD
+                THE GALLERY
               </Link>
             </Button>
           </div>
