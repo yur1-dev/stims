@@ -228,22 +228,6 @@ const AngelBot = () => {
       chatUser: "bg-purple-800 bg-opacity-30",
       chatBot: "bg-gray-800",
     },
-    // {
-    //   id: "light",
-    //   name: "Celestial Light",
-    //   bg: "bg-gradient-to-br from-[#f0f9ff] to-[#e6f7ff]",
-    //   text: "text-[#1a365d]",
-    //   accent: "#4f46e5",
-    //   button: "bg-[#4f46e5] hover:bg-[#4338ca]",
-    //   border: "border-[#c7d2fe]",
-    //   bgClass: "bg-gradient-to-br from-[#f0f9ff] to-[#e6f7ff]",
-    //   textClass: "text-[#1a365d]",
-    //   icon: Sun,
-    //   particleColor: "bg-[#93c5fd]",
-    //   modalHeader: "bg-gradient-to-r from-[#dbeafe] to-[#bfdbfe]",
-    //   chatUser: "bg-[#4f46e5] bg-opacity-15",
-    //   chatBot: "bg-white",
-    // },
     {
       id: "void",
       name: "Void Resonance",
@@ -298,10 +282,11 @@ const AngelBot = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [chatEnded, setChatEnded] = useState(false);
+  const [mounted, setMounted] = useState(false); // Fix for window reference
 
   // Modal states
   const [activeModal, setActiveModal] = useState<string | null>(null);
-  const [activeTheme, setActiveTheme] = useState(THEMES[3]); // Start with Celestial Light
+  const [activeTheme, setActiveTheme] = useState(THEMES[0]); // Fixed: Default theme
   const [activeSigil, setActiveSigil] = useState<number | null>(null);
   const [loreProgress, setLoreProgress] = useState(0);
   const [collectedLore, setCollectedLore] = useState<number[]>([]);
@@ -361,6 +346,11 @@ const AngelBot = () => {
 
     window.addEventListener("keydown", handleEsc);
     return () => window.removeEventListener("keydown", handleEsc);
+  }, []);
+
+  // Set mounted state to fix window reference
+  useEffect(() => {
+    setMounted(true);
   }, []);
 
   // Helpers
@@ -625,7 +615,7 @@ const AngelBot = () => {
 
     const randomEffect = effects[Math.floor(Math.random() * effects.length)];
 
-    if (navigator.vibrate) {
+    if (typeof window !== "undefined" && navigator.vibrate) {
       navigator.vibrate([200, 100, 200]);
     }
 
@@ -671,31 +661,36 @@ const AngelBot = () => {
     >
       {/* Cosmic Particle Background */}
       <div className="fixed inset-0 -z-10">
-        {[...Array(30)].map((_, i) => (
-          <motion.div
-            key={i}
-            className={`absolute rounded-full ${activeTheme.particleColor}`}
-            initial={{
-              opacity: 0,
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
-              scale: 0,
-            }}
-            animate={{
-              opacity: [0, 0.2, 0],
-              scale: [0, Math.random() * 0.5 + 0.5, 0],
-            }}
-            transition={{
-              duration: Math.random() * 5 + 5,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-            }}
-            style={{
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-            }}
-          />
-        ))}
+        {mounted &&
+          [...Array(30)].map((_, i) => (
+            <motion.div
+              key={i}
+              className={`absolute rounded-full ${activeTheme.particleColor}`}
+              initial={{
+                opacity: 0,
+                x:
+                  Math.random() *
+                  (typeof window !== "undefined" ? window.innerWidth : 0),
+                y:
+                  Math.random() *
+                  (typeof window !== "undefined" ? window.innerHeight : 0),
+                scale: 0,
+              }}
+              animate={{
+                opacity: [0, 0.2, 0],
+                scale: [0, Math.random() * 0.5 + 0.5, 0],
+              }}
+              transition={{
+                duration: Math.random() * 5 + 5,
+                repeat: Infinity,
+                delay: Math.random() * 5,
+              }}
+              style={{
+                width: `${Math.random() * 3 + 1}px`,
+                height: `${Math.random() * 3 + 1}px`,
+              }}
+            />
+          ))}
       </div>
 
       {/* Settings Dropdown */}
@@ -770,7 +765,7 @@ const AngelBot = () => {
           </div>
           <button
             onClick={() => {
-              if (navigator.vibrate) {
+              if (typeof window !== "undefined" && navigator.vibrate) {
                 navigator.vibrate([200, 100, 200]);
               }
               setShowSettings(false);
