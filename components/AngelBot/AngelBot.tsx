@@ -427,9 +427,9 @@ const AngelBot = () => {
         setCollectedLore((prev) => [...prev, newLoreIndex]);
       }
       // Fixed: Escape double quotes in the string
-      return `You have unlocked a fragment of cosmic truth...\n\n"${
+      return `You have unlocked a fragment of cosmic truth...\n\n&quot;${
         LORE_TOPICS[newLoreIndex]
-      }"\n\n${loreProgress + 1}/${LORE_TOPICS.length} fragments collected`;
+      }&quot;\n\n${loreProgress + 1}/${LORE_TOPICS.length} fragments collected`;
     }
 
     pickMood();
