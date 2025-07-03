@@ -302,7 +302,6 @@ const AngelBot = () => {
   const [purpose, setPurpose] = useState(PURPOSES[0]);
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [videoError, setVideoError] = useState(false);
   const animationRef = useRef<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -339,16 +338,12 @@ const AngelBot = () => {
 
     if (isTyping && !videoError) {
       videoRef.current.currentTime = 0;
-      videoRef.current
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch((e) => {
-          console.error("Video playback error:", e);
-          setVideoError(true);
-        });
+      videoRef.current.play().catch((e) => {
+        console.error("Video playback error:", e);
+        setVideoError(true);
+      });
     } else if (videoRef.current) {
       videoRef.current.pause();
-      setIsPlaying(false);
     }
   }, [isTyping, videoError]);
 
@@ -906,7 +901,7 @@ const AngelBot = () => {
                           Fragment #{index + 1}
                         </div>
                         <div className="text-xs mb-2 italic">
-                          "{puzzle.question}"
+                          {`"${puzzle.question}"`}
                         </div>
                         <div className="text-xs opacity-60">
                           Solve the riddle in the chat to unlock
@@ -1446,15 +1441,6 @@ const AngelBot = () => {
                 </motion.div>
               )}
             </AnimatePresence>
-
-            {/* {isPlaying && (
-              <div
-                className="text-sm italic mt-2 text-center"
-                style={{ color: activeTheme.textClass }}
-              >
-                Cosmic frequencies channeling...
-              </div>
-            )} */}
           </div>
 
           {/* Chat Container */}
