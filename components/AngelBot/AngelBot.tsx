@@ -889,7 +889,7 @@ const AngelBot = () => {
                           Fragment #{index + 1}
                         </div>
                         <div className="text-xs opacity-60 text-center">
-                          Ask about "lore"
+                          Ask about {"lore"}
                         </div>
                       </div>
                     )}
