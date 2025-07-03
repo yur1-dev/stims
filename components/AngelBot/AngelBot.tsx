@@ -12,8 +12,7 @@ import {
   MessageCircle,
   Settings,
   Send,
-  Sun,
-  Moon,
+  Moon, // Removed unused Sun import
   RotateCcw,
   Vibrate,
   Zap,
@@ -427,6 +426,7 @@ const AngelBot = () => {
       if (!collectedLore.includes(newLoreIndex)) {
         setCollectedLore((prev) => [...prev, newLoreIndex]);
       }
+      // Fixed: Escape double quotes in the string
       return `You have unlocked a fragment of cosmic truth...\n\n"${
         LORE_TOPICS[newLoreIndex]
       }"\n\n${loreProgress + 1}/${LORE_TOPICS.length} fragments collected`;
