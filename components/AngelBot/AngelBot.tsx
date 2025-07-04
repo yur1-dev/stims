@@ -30,6 +30,12 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
+// Define message type
+type Message = {
+  from: string;
+  text: string;
+};
+
 const AngelBot = () => {
   // Define constants
   const EMOTIONS = [
@@ -431,7 +437,7 @@ const AngelBot = () => {
   ];
 
   const router = useRouter();
-  const [messages, setMessages] = useState(() => {
+  const [messages, setMessages] = useState<Message[]>(() => {
     if (typeof window !== "undefined") {
       const savedMessages = localStorage.getItem("angelEngineMessages");
       return savedMessages
@@ -478,11 +484,7 @@ const AngelBot = () => {
   useEffect(() => {
     if (typeof window !== "undefined" && messages.length > 0) {
       localStorage.setItem("angelEngineMessages", JSON.stringify(messages));
-      setHasConversationStarted(
-        messages.some(
-          (msg: { from: string; text: string }) => msg.from === "user"
-        )
-      );
+      setHasConversationStarted(messages.some((msg) => msg.from === "user"));
     }
   }, [messages]);
 
@@ -762,7 +764,7 @@ const AngelBot = () => {
       const displayText =
         message.substring(0, charsToShow) + (progress < 1 ? "│" : "");
 
-      setMessages((prev: { from: string; text: string }[]) => {
+      setMessages((prev) => {
         const copy = [...prev];
         copy[copy.length - 1] = { from: "bot", text: displayText };
         return copy;
@@ -771,7 +773,7 @@ const AngelBot = () => {
       if (progress < 1) {
         animationRef.current = requestAnimationFrame(animate);
       } else {
-        setMessages((prev: any) => {
+        setMessages((prev) => {
           const copy = [...prev];
           copy[copy.length - 1] = { from: "bot", text: message };
           return copy;
@@ -788,17 +790,11 @@ const AngelBot = () => {
   const sendMessage = () => {
     if (!input.trim() || loading || chatEnded) return;
 
-    setMessages((prev: { from: string; text: string }[]) => [
-      ...prev,
-      { from: "user", text: input.trim() },
-    ]);
+    setMessages((prev) => [...prev, { from: "user", text: input.trim() }]);
     setInput("");
     setLoading(true);
     setTimeout(() => {
-      setMessages((prev: { from: string; text: string }[]) => [
-        ...prev,
-        { from: "bot", text: "" },
-      ]);
+      setMessages((prev) => [...prev, { from: "bot", text: "" }]);
       const reply = generateResponse(input.trim());
       setTimeout(() => typeMessage(reply, () => setLoading(false)), 600);
     }, 400);
@@ -814,16 +810,13 @@ const AngelBot = () => {
     if (!hasConversationStarted) return;
 
     setChatEnded(true);
-    setMessages((prev: { from: string; text: string }[]) => [
+    setMessages((prev) => [
       ...prev,
       { from: "user", text: "I'm done chatting for now" },
     ]);
     setLoading(true);
     setTimeout(() => {
-      setMessages((prev: { from: string; text: string }[]) => [
-        ...prev,
-        { from: "bot", text: "" },
-      ]);
+      setMessages((prev) => [...prev, { from: "bot", text: "" }]);
       const reply =
         "Until next time traveller... Remember: what you see is but a shadow of what is. \n\n" +
         "Seek our temple: https://www.angelengine.xyz/ \n" +
@@ -850,7 +843,7 @@ const AngelBot = () => {
       navigator.vibrate([200, 100, 200]);
     }
 
-    setMessages((prev: { from: string; text: string }[]) => [
+    setMessages((prev) => [
       ...prev,
       {
         from: "bot",
@@ -1810,54 +1803,52 @@ const AngelBot = () => {
                   activeTheme.id === "light" ? "#f9fafb" : "#0a0a0a",
               }}
             >
-              {messages.map(
-                (msg: { from: string; text: string }, i: number) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    className={`flex ${
-                      msg.from === "user" ? "justify-end" : "justify-start"
+              {messages.map((msg, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  className={`flex ${
+                    msg.from === "user" ? "justify-end" : "justify-start"
+                  }`}
+                >
+                  <div
+                    className={`max-w-[90%] md:max-w-[85%] px-4 py-3 md:px-5 md:py-4 rounded-2xl shadow-lg ${
+                      msg.from === "bot"
+                        ? `border ${activeTheme.border} ${activeTheme.chatBot}`
+                        : ""
                     }`}
+                    style={
+                      msg.from === "user"
+                        ? {
+                            backgroundColor: `${activeTheme.accent}`,
+                            color: activeTheme.textClass,
+                            border: activeTheme.chatUser,
+                          }
+                        : {
+                            backgroundColor: activeTheme.chatBot,
+                            color: activeTheme.textClass,
+                          }
+                    }
                   >
-                    <div
-                      className={`max-w-[90%] md:max-w-[85%] px-4 py-3 md:px-5 md:py-4 rounded-2xl shadow-lg ${
-                        msg.from === "bot"
-                          ? `border ${activeTheme.border} ${activeTheme.chatBot}`
-                          : ""
-                      }`}
-                      style={
-                        msg.from === "user"
-                          ? {
-                              backgroundColor: `${activeTheme.accent}`,
-                              color: activeTheme.textClass,
-                              border: activeTheme.chatUser,
-                            }
-                          : {
-                              backgroundColor: activeTheme.chatBot,
-                              color: activeTheme.textClass,
-                            }
-                      }
-                    >
-                      {msg.from === "bot" && (
-                        <div className="flex items-center gap-2 mb-2 text-xs md:text-sm">
-                          <Skull
-                            className="w-3 h-3"
-                            style={{ color: activeTheme.accent }}
-                          />
-                          <span style={{ color: activeTheme.accent }}>
-                            Angel Engine ({emotion})
-                          </span>
-                        </div>
-                      )}
-                      <div className="whitespace-pre-line leading-relaxed text-xs md:text-sm">
-                        {parseMessage(msg.text)}
+                    {msg.from === "bot" && (
+                      <div className="flex items-center gap-2 mb-2 text-xs md:text-sm">
+                        <Skull
+                          className="w-3 h-3"
+                          style={{ color: activeTheme.accent }}
+                        />
+                        <span style={{ color: activeTheme.accent }}>
+                          Angel Engine ({emotion})
+                        </span>
                       </div>
+                    )}
+                    <div className="whitespace-pre-line leading-relaxed text-xs md:text-sm">
+                      {parseMessage(msg.text)}
                     </div>
-                  </motion.div>
-                )
-              )}
+                  </div>
+                </motion.div>
+              ))}
 
               {loading && !isTyping && (
                 <motion.div
