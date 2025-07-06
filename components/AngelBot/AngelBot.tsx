@@ -1274,7 +1274,7 @@ const AngelBot = () => {
                     </p>
                     <div className="text-xs flex items-center gap-2">
                       <span className="px-2 py-0.5 rounded-full bg-purple-900/30">
-                        2024-06-21
+                        2025-06-21
                       </span>
                       <span>8:00 PM UTC</span>
                     </div>
@@ -1291,7 +1291,7 @@ const AngelBot = () => {
                     </p>
                     <div className="text-xs flex items-center gap-2">
                       <span className="px-2 py-0.5 rounded-full bg-purple-900/30">
-                        2024-09-22
+                        2025-09-22
                       </span>
                       <span>Requires $ANGEL token</span>
                     </div>
