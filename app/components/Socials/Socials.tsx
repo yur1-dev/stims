@@ -11,7 +11,7 @@ export default function Social() {
     //   height: 48,
     // },
     {
-      href: "https://x.com/i/communities/1938274650569503000/",
+      href: "https://x.com/i/communities/1959619504935203061",
       src: "/x.png",
       alt: "X Logo",
       width: 48,
