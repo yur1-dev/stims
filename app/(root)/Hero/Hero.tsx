@@ -22,7 +22,7 @@ const Hero: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
 
-  const contractAddress = "6PRUjbAcabg7pLuKWg1Lxa8ZBzWE4bDBuA24zZttpump"; // ← put your contract address here
+  const contractAddress = "BeiiY1aA955AEDrqm7UAdbxFUpguUrHH9MLujNxZpump"; // ← put your contract address here
 
   const shortAddress =
     contractAddress.length > 0
