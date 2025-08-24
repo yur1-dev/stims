@@ -629,7 +629,7 @@ const AngelBot = () => {
     return options[Math.floor(Math.random() * options.length)];
   };
 
-  const getCryptoResponse = (style: string, isQuestion: boolean) => {
+  const getCryptoResponse = (style: string) => {
     const responses: { [key: string]: string[] } = {
       casual: [
         "$ANGEL tokens are basically keys to our community.",
@@ -656,7 +656,7 @@ const AngelBot = () => {
     return options[Math.floor(Math.random() * options.length)];
   };
 
-  const getTikTokResponse = (style: string, isQuestion: boolean) => {
+  const getTikTokResponse = (style: string) => {
     const responses: { [key: string]: string[] } = {
       casual: [
         "Our TikTok @theunearthlyhub is where the magic happens.",
@@ -729,11 +729,7 @@ const AngelBot = () => {
     return options[Math.floor(Math.random() * options.length)] + ".";
   };
 
-  const getDefaultResponse = (
-    style: string,
-    isPersonal: boolean,
-    userMessage: string
-  ) => {
+  const getDefaultResponse = (style: string, isPersonal: boolean) => {
     if (isPersonal) {
       return style === "casual"
         ? "Tell me more about what you're thinking."
@@ -810,7 +806,7 @@ const AngelBot = () => {
       userMsgLower.includes("angel") ||
       userMsgLower.includes("crypto")
     ) {
-      return getCryptoResponse(style, isQuestion);
+      return getCryptoResponse(style);
     }
 
     // TikTok/Content related
@@ -819,7 +815,7 @@ const AngelBot = () => {
       userMsgLower.includes("video") ||
       userMsgLower.includes("content")
     ) {
-      return getTikTokResponse(style, isQuestion);
+      return getTikTokResponse(style);
     }
 
     // Mystical/Philosophical
@@ -849,10 +845,10 @@ const AngelBot = () => {
     }
 
     // Default response with variety
-    return getDefaultResponse(style, isPersonal, userMessage);
+    return getDefaultResponse(style, isPersonal);
   };
 
-  // NEW: More authentic response generation
+  // NEW: Use more authentic response generation
   const generateAuthenticResponse = (
     userMessage: string,
     userMsgLower: string
@@ -954,7 +950,19 @@ const AngelBot = () => {
 
     // NEW: Use more authentic response generation
     pickMood();
-    return generateAuthenticResponse(userMessage, userMsgLower);
+
+    // Sometimes include the purpose in mystical responses
+    const authenticResponse = generateAuthenticResponse(
+      userMessage,
+      userMsgLower
+    );
+
+    // Occasionally add the cosmic purpose for mystical flavor
+    if (Math.random() > 0.8 && authenticResponse.length < 200) {
+      return `${authenticResponse}\n\nMy essence flows ${purpose}.`;
+    }
+
+    return authenticResponse;
   };
 
   const typeMessage = (message: string, cb: () => void) => {
