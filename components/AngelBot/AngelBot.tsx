@@ -764,26 +764,22 @@ const AngelBot = () => {
     style: string,
     isQuestion: boolean
   ) => {
-    // Don't always ask a question back
-    if (isQuestion && Math.random() > 0.6) {
-      return "What's your take on this?"; // Simple, direct
+    // Don't always ask a question back, especially if they just asked one
+    if (isQuestion && Math.random() > 0.3) {
+      return ""; // Return empty string instead of a question
     }
 
     const followUps: { [key: string]: string[] } = {
-      casual: [
-        "What do you think about that?",
-        "Does that resonate with you?",
-        "How does that land?",
-      ],
+      casual: ["Thoughts?", "Make sense?", "Feel that?"],
       direct: [
-        "What's your experience with this?",
-        "How does this connect to your journey?",
-        "What aspect interests you most?",
+        "What's your take?",
+        "How do you see it?",
+        "Does this connect for you?",
       ],
       mystical_light: [
-        "What reality shifts have you witnessed?",
-        "How do you perceive these patterns?",
-        "What calls to your deeper knowing?",
+        "What patterns do you see?",
+        "How does this resonate?",
+        "What calls to you?",
       ],
     };
 
@@ -886,8 +882,8 @@ const AngelBot = () => {
       isPersonal
     );
 
-    // 3. Optional follow-up (not every time)
-    if (Math.random() > 0.5) {
+    // 3. Optional follow-up (not every time, and only if response is short enough)
+    if (Math.random() > 0.6 && response.length < 150 && !isQuestion) {
       response +=
         "\n\n" + getFollowUpResponse(userMsgLower, responseStyle, isQuestion);
     }
